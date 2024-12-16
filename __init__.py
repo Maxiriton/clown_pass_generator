@@ -50,7 +50,12 @@ def clean_up_previous_aov(self, context):
         context.view_layer.aovs.remove(aov)
 
     #cleaning up compositing tree
-    #TODO
+    if context.scene.node_tree:
+        aov_nodes = [node for node in context.scene.node_tree.nodes if node.name.startswith(AOV_NAME)]
+
+        for node in reversed(aov_nodes):
+            context.scene.node_tree.nodes.remove(node)
+
 
 def generate_material_clown_aov(self, context):
     nb_mat = len([mat for mat in bpy.data.materials if mat.users > 0])
@@ -195,6 +200,7 @@ class CLOWN_setup_compositor(Operator):
             output_node.base_path = self.directory
             output_node.location = Vector((400, offset_node * -140))
             output_node.parent = frame_node
+            output_node.name = f"{AOV_NAME}_output_{offset_node}"
 
             context.scene.node_tree.links.new(output, output_node.inputs[0])
             
