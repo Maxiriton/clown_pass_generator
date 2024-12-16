@@ -12,11 +12,14 @@ This addon can generate two types of clown passes, material and objects.
 
 ## Usage
 
-To add the clown pass, simply click on the Object Menu in Object Mode and click on the ==Generate Clown Pass== button. You can adjust some parameters in the last operator panel in the bottom left corner of the 3D view. And that's it you now have a clown pass added to your render. 
-
-
+To add the clown pass, simply click on the **Object** Menu in Object Mode and click on the **Generate Clown Pass** button.  
 ![The Generate button is added at the bottom of the Object Menu ](https://raw.githubusercontent.com/Maxiriton/images_repo/refs/heads/main/clown_aov/generate_button.jpg)
 
+You can adjust some parameters in the last operator panel in the **bottom left** corner of the 3D view.
+
 ![Parameters can be changed from the last operator Panel](https://raw.githubusercontent.com/Maxiriton/images_repo/refs/heads/main/clown_aov/UI.jpg)
+
+And that's it you now have a clown pass added to your render.  If you are using Eevee, you can visualize the pass directly in the viewport. In Cycles, you need to render the image to have access to the new render pass. 
+
 
 
