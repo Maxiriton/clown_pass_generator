@@ -180,15 +180,25 @@ class CLOWN_setup_compositor(Operator):
         if render_layers_node is None:
             return {'CANCELED'}
         
+        offset_node = 0
+
+        frame_node = context.scene.node_tree.nodes.new("NodeFrame")
+        frame_node.name = f"{AOV_NAME}_frame"
+        frame_node.location = Vector((400, 0))
+        frame_node.label = "Clown Passes outputs"
+
         for output in render_layers_node.outputs:
             if not output.name.startswith(AOV_NAME):
                 continue
 
             output_node = context.scene.node_tree.nodes.new("CompositorNodeOutputFile")
             output_node.base_path = self.directory
+            output_node.location = Vector((400, offset_node * -140))
+            output_node.parent = frame_node
 
             context.scene.node_tree.links.new(output, output_node.inputs[0])
             
+            offset_node +=1
 
         return {'FINISHED'}
 
